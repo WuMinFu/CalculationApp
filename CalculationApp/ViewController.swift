@@ -16,21 +16,24 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var answerLabel: UILabel!
     
+    @IBOutlet weak var symbolSegmented: UISegmentedControl!
     var sum = 0.00
-    
-    @IBAction func calculationSegmented(_ sender: UISegmentedControl) {
+    @IBAction func calculatorTextField(_ sender: Any) {
         if firstNumberTextField.text != "",secondNumberTextField.text != ""{
-            Calculation(symbol: sender.selectedSegmentIndex, number1: firstNumberTextField.text!,number2: secondNumberTextField.text!)
+            calculation(symbol: symbolSegmented.selectedSegmentIndex, number1: firstNumberTextField.text!,number2: secondNumberTextField.text!)
             answerLabel.text = "答案：\(String(format: "%0.2f", sum))"
         }
-        
     }
     
+    
+    @IBAction func endKey(_ sender: Any) {
+        view.endEditing(true)
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
     }
-    func Calculation(symbol:Int,number1:String,number2:String){
+    func calculation(symbol:Int,number1:String,number2:String){
         
         switch symbol {
         case 0:
